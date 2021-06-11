@@ -1,7 +1,11 @@
 # Talent Factory
 ## webinar #2: Angular Booking Demo
 
-Il codice sorgente del [webinar #2: Angular Booking Demo](https://www.youtube.com/watch?v=gu5zbCswoIU) creato per presentare la nostra accademia [IT Talent Factory](https://academy.talent-factory.it/).
+Repository del codice sorgente realizzato per il _webinar #2: Angular Booking Demo_ creato in occasione della nascita della nostra accademia [IT Talent Factory](https://academy.talent-factory.it/).
+
+• [Video Teaser](https://www.youtube.com/watch?v=gu5zbCswoIU)
+
+• [Sito Web Talent Factory Academy](https://www.youtube.com/watch?v=gu5zbCswoIU)
 
 ---
 In questa demo:
