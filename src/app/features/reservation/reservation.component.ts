@@ -10,7 +10,7 @@ import { MOCK } from '../../mock-data';
   selector: 'fb-reservation',
   template: `
 
-    <mat-drawer-container class="container">
+    <mat-drawer-container class="view">
       <!--left side-->
       <mat-drawer mode="side" opened style="min-width: 250px;padding: 10px">
         <fb-reservation-list
@@ -32,13 +32,7 @@ import { MOCK } from '../../mock-data';
 
     <pre>{{currentItem | json}}</pre>
   `,
-  styles: [`
-    .container {
-      width: 100%;
-      height: 100vh;
-      margin: 0;
-    }
-  `]
+  styles: [` .view { width: 100%;height: 100vh;margin: 0 } `]
 })
 export class ReservationComponent {
   currentItem!: Site | null;

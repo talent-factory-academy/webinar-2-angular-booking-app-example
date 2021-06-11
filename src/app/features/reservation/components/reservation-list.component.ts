@@ -6,7 +6,7 @@ import { Site } from '../../../model/site';
 @Component({
   selector: 'fb-reservation-list',
   template: `
-    <div style="position: absolute; text-align: center; z-index: 10; left: 0; right: 0; background-color: white">
+    <div class="list-header">
       <h2>Book an appointment <br>With your bank</h2>
       <mat-form-field class="example-form-field">
         <mat-label>Filter by name </mat-label>
@@ -18,7 +18,7 @@ import { Site } from '../../../model/site';
       </mat-form-field>
     </div>
     
-    <div style="padding-top: 130px">
+    <div class="list-content">
       <mat-list>
         <mat-list-item matRipple (click)="itemClick.emit(null)">
           <mat-icon mat-list-icon>map</mat-icon>
@@ -40,8 +40,14 @@ import { Site } from '../../../model/site';
       </mat-list>
     </div>
   `,
-  styles: [
-  ]
+  styles: [`
+    .list-header {
+      position: absolute; text-align: center; z-index: 10; left: 0; right: 0; background-color: white
+    }
+    .list-content {
+      padding-top: 130px
+    }
+  `]
 })
 export class ReservationListComponent {
   @Input() list!: Site[];
