@@ -4,7 +4,7 @@ import * as L from 'leaflet';
 const mapTheme = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark';
 
 const myIcon = L.icon({
-  iconUrl: './assets/marker.png',
+  iconUrl: './assets/marker_white.png',
   iconSize: [66, 82],
   iconAnchor: [32, 80],
 });
@@ -13,7 +13,7 @@ const myIcon = L.icon({
 @Component({
   selector: 'fb-leaflet-map',
   template: `
-    <div #host style="width: 300px; height: 200px"></div>
+    <div #host style="width: 400px; height: 300px"></div>
   `,
 })
 export class LeafletMapComponent implements OnChanges {

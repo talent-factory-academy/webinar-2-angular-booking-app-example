@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LeafletMapComponent } from './shared/leaflet-map/leaflet-map.component';
+import { LeafletMapComponent } from './features/leaflet-simple-demo/components/leaflet-map.component';
 import { ReservationMapComponent } from './features/reservation/components/reservation-map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
