@@ -2,7 +2,7 @@ export interface Site {
   id: number;
   name: string;
   coords: Coords;
-  seats: Seat[]
+  availableDates: Seat[]
 }
 
 export interface Seat {

@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, OnChanges, EventEmitter, Output, SimpleChanges, ViewChild } from '@angular/core';
-// import { Map } from "leaflet";
 import * as L from 'leaflet';
 import { LatLngTuple } from 'leaflet';
 import { Coords, Site } from '../../../model/site';
@@ -34,7 +33,7 @@ export class ReservationMapComponent implements OnChanges {
   /**
    * Init Leaflet Map
    */
-  init(): void {
+  initMap(): void {
     this.leafletMap = L.map(this.host.nativeElement);
     L.tileLayer(mapTheme + '/{z}/{x}/{y}{r}.png').addTo(this.leafletMap);
     this.leafletMap.attributionControl.setPrefix('Create by Fabio Biondi - Talent Factory')
@@ -47,7 +46,7 @@ export class ReservationMapComponent implements OnChanges {
   ngOnChanges( changes: SimpleChanges): void {
     // First time ==> init map
     if (changes.sites && changes.sites.isFirstChange()) {
-      this.init();
+      this.initMap();
     }
 
     // when a new site is selected
@@ -60,13 +59,12 @@ export class ReservationMapComponent implements OnChanges {
     }
   }
 
-
   /**
    * Draw all markers on map
    */
   drawMarkers(): void {
     this.sites.forEach(site => {
-      const seats = site.seats
+      const seats = site.availableDates
       L.marker(site.coords, {icon: seats.length ? IconWhite : IconRed})
         .bindTooltip(
           `${site.name}:
@@ -81,7 +79,6 @@ export class ReservationMapComponent implements OnChanges {
     })
   }
 
-
   /**
    * Fit map to display all markers
    */
@@ -91,6 +88,5 @@ export class ReservationMapComponent implements OnChanges {
       padding: [0, 10],
     })
   }
-
 
 }

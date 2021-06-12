@@ -11,16 +11,16 @@ import { MOCK } from '../../mock-data';
   template: `
 
     <mat-drawer-container class="view">
-      <!--left side-->
+      <!--left col-->
       <mat-drawer mode="side" opened style="min-width: 250px;padding: 10px">
         <fb-reservation-list
-          [list]="sites"
-          [selectedItem]="currentItem"
+          [items]="sites"
+          [selectedSite]="currentItem"
           (itemClick)="currentItem = $event"
         ></fb-reservation-list>
       </mat-drawer>
 
-      <!--right side-->
+      <!--right col-->
       <mat-drawer-content>
         <fb-reservation-map
           [currentSite]="currentItem?.coords"
