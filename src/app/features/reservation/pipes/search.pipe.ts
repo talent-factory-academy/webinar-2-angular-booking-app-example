@@ -6,11 +6,12 @@ import { Site } from '../../../model/site';
 })
 export class SearchPipe implements PipeTransform {
   transform(items: Site[] | null, text = ''): Site[] | null{
-    text = text.toLowerCase();
-    return items ?
-      items.filter((item, index) => {
-        const findIndex = item.name.toLowerCase().indexOf(text);
+    if (!text || !items) {
+      return items;
+    }
+    return items.filter(item => {
+        const findIndex = item.name.toLowerCase().indexOf(text.toLowerCase());
         return findIndex >= 0;
-      }) : items;
+      });
   }
 }

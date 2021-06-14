@@ -26,7 +26,7 @@ import { Site } from '../../../model/site';
           <div mat-line>View all</div>
         </mat-list-item>
 
-        <ng-container *ngFor="let item of items | search: (input$ | async)">
+        <ng-container *ngFor="let item of items | search: (search$ | async)">
           <mat-divider></mat-divider>
           <mat-list-item
             matRipple
@@ -51,13 +51,7 @@ import { Site } from '../../../model/site';
 })
 export class ReservationListComponent {
   @Input() items: Site[] | null = [];
-  @Output() itemClick = new EventEmitter<Site | null>()
-
-  input: FormControl = new FormControl()
-  input$ = this.input.valueChanges
-    .pipe(
-      debounceTime(1000),
-      startWith(''),
-    );
-
+  @Output() itemClick = new EventEmitter<Site | null>();
+  input: FormControl = new FormControl();
+  search$ = this.input.valueChanges.pipe(debounceTime(1000));
 }
