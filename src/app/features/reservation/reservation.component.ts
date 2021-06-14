@@ -10,8 +10,8 @@ import { ReservationService } from './services/reservation.service';
       <mat-drawer mode="side" opened class="left-panel">
         <fb-reservation-list
           [items]="reservationService.sites | async"
-          [selectedSite]="reservationService.currentItem"
-          (itemClick)="reservationService.currentItem = $event"
+          [selectedSite]="reservationService.currentSite | async"
+          (itemClick)="reservationService.setSelectedSiteHandler($event)"
         ></fb-reservation-list>
       </mat-drawer>
 
@@ -19,7 +19,7 @@ import { ReservationService } from './services/reservation.service';
       <mat-drawer-content>
         <fb-reservation-map
           [sites]="reservationService.sites | async"
-          [currentSite]="reservationService.currentItem?.coords"
+          [currentSite]="(reservationService.currentSite | async)?.coords"
           (markerClick)="reservationService.openReservationModal($event)"
         ></fb-reservation-map>
       </mat-drawer-content>

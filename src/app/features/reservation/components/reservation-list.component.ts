@@ -8,7 +8,7 @@ import { Site } from '../../../model/site';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="list-header">
-      <h2>Book an appointment <br>With your bank</h2>
+      <h2>Book an appointment <br>with your bank</h2>
       <mat-form-field class="example-form-field">
         <mat-label>Filter by name</mat-label>
         <input matInput type="text" [formControl]="input">

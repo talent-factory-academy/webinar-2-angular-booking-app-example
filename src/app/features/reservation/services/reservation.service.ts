@@ -5,14 +5,21 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReservationModalComponent } from '../components/reservation-modal.component';
 import { filter } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationService {
-  currentItem!: Site | null;
   sites: Observable<Site[] |  null> = of(MOCK);
+  currentSite = new BehaviorSubject<Site | null>(null)
 
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
+
+  /**
+   * Set the selected site
+   */
+  setSelectedSiteHandler(site: Site | null) {
+    this.currentSite.next(site);
+  }
 
   /**
    * Open the reservation modal after clicking markers
@@ -45,4 +52,5 @@ export class ReservationService {
       }
     );
   }
+
 }
