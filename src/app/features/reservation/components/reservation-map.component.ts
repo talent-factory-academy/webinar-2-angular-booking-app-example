@@ -47,7 +47,7 @@ export class ReservationMapComponent implements OnChanges {
   initMap(): void {
     this.leafletMap = L.map(this.host.nativeElement);
     L.tileLayer(mapTheme + '/{z}/{x}/{y}{r}.png').addTo(this.leafletMap);
-    this.leafletMap.attributionControl.setPrefix('Create by Fabio Biondi - Talent Factory')
+    this.leafletMap.attributionControl.setPrefix('Created by Fabio Biondi - Talent Factory')
     this.drawMarkers();
   }
 
