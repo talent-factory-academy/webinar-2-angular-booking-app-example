@@ -1,4 +1,14 @@
-import { Component, ElementRef, Input, OnChanges, EventEmitter, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  EventEmitter,
+  Output,
+  SimpleChanges,
+  ViewChild,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import * as L from 'leaflet';
 import { LatLngTuple } from 'leaflet';
 import { Coords, Site } from '../../../model/site';
@@ -19,6 +29,7 @@ const IconRed = L.icon({
 
 @Component({
   selector: 'fb-reservation-map',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div #host style="width: 100%; height: 100%"></div>
   `,

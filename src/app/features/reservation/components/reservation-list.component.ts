@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, startWith } from 'rxjs/operators';
 import { Site } from '../../../model/site';
 
 @Component({
   selector: 'fb-reservation-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="list-header">
       <h2>Book an appointment <br>With your bank</h2>
