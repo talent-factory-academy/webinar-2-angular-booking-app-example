@@ -38,9 +38,9 @@ import { Site, Time } from '../../../model/site';
 })
 export class ReservationModalComponent {
   tabIndex: number = 0;         // 0: tab date | 1: tab time
-  selectedDate!: Date | null;   // calendar selected day
-  availableDates!: Date[];      // available dates for a site
-  availableTimes!: Time[];      // aviilable times for a date
+  selectedDate: Date | null = null;   // calendar selected day
+  availableDates: Date[] = [];      // available dates for a site
+  availableTimes: Time[] = [];      // aviilable times for a date
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Site ) {
     // available dates for the opened site
@@ -54,24 +54,23 @@ export class ReservationModalComponent {
    */
   filterByAvailableDates = (d: Date | null): boolean => {
     const time = d?.getTime();
-    return !!this.availableDates.find(x=>x.getTime()==time);
+    return !!this.availableDates.find(x => x.getTime() === time);
   }
 
   /**
    * Invoked when user selects a day from date picker
    */
-  chooseDateHandler($event: Date | null) {
+  chooseDateHandler(selectedDate: Date | null) {
     // go to Time Tab
     this.tabIndex = 1;
     // save the selected date
-    this.selectedDate = $event;
+    this.selectedDate = selectedDate;
     // set available times for selected day
     this.availableTimes = this.data.availableDates.find(seat => {
-      return this.selectedDate ?
-        new Date(seat.date).getTime() === new Date(this.selectedDate).getTime() :
-        null;
-    })?.availableTimes || []
-    }
+      return this.selectedDate && new Date(seat.date).getTime() === new Date(this.selectedDate).getTime();
+    })?.availableTimes || [];
+
+  }
 
   /**
    * Invoked when user selects a time

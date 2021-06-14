@@ -30,7 +30,6 @@ import { Site } from '../../../model/site';
           <mat-divider></mat-divider>
           <mat-list-item
             matRipple
-            [disabled]="selectedSite?.id === item.id"
             (click)="itemClick.emit(item)"
           >
             <mat-icon mat-list-icon>place</mat-icon>
@@ -51,8 +50,7 @@ import { Site } from '../../../model/site';
   `]
 })
 export class ReservationListComponent {
-  @Input() items!: Site[] | null;
-  @Input() selectedSite!: Site | null;
+  @Input() items: Site[] | null = [];
   @Output() itemClick = new EventEmitter<Site | null>()
 
   input: FormControl = new FormControl()

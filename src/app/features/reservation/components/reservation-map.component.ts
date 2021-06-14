@@ -36,8 +36,8 @@ const IconRed = L.icon({
 })
 export class ReservationMapComponent implements OnChanges {
   @ViewChild('host', { static: true }) host!: ElementRef<HTMLInputElement>;
-  @Input() sites!: Site[] | null;
-  @Input() currentSite!: Coords | undefined;
+  @Input() sites: Site[] | null = null;
+  @Input() currentSite: Coords | undefined;
   @Output() markerClick = new EventEmitter<Site>()
   leafletMap!: L.Map;
 
@@ -54,7 +54,7 @@ export class ReservationMapComponent implements OnChanges {
   /**
    * When property changes
    */
-  ngOnChanges( changes: SimpleChanges): void {
+  ngOnChanges( changes: SimpleChanges ): void {
     // First time ==> init map
     if (changes.sites && changes.sites.isFirstChange()) {
       this.initMap();

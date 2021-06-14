@@ -9,22 +9,30 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationService {
-  sites: Observable<Site[] |  null> = of(MOCK);
-  currentSite = new BehaviorSubject<Site | null>(null)
+  sites$ = new BehaviorSubject<Site[]>([]);
+  currentSite$ = new BehaviorSubject<Site | null>(null);
 
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
+
+  getSites(): void {
+    this.sites$.next(MOCK);
+  }
 
   /**
    * Set the selected site
    */
   setSelectedSiteHandler(site: Site | null) {
-    this.currentSite.next(site);
+    this.currentSite$.next(site);
+
+    if (site) {
+      this.openReservationModal(site);
+    }
   }
 
   /**
    * Open the reservation modal after clicking markers
    */
-  openReservationModal(site: Site): void {
+  openReservationModal(site: Site | null): void {
     const dialogRef = this.dialog.open(
       ReservationModalComponent,
       { data: site  }
