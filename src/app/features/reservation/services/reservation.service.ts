@@ -5,11 +5,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReservationModalComponent } from '../components/reservation-modal.component';
 import { filter } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationService {
   currentItem!: Site | null;
-  sites: Site[] = MOCK;
+  sites: Observable<Site[] |  null> = of(MOCK);
 
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
 

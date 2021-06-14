@@ -36,7 +36,7 @@ const IconRed = L.icon({
 })
 export class ReservationMapComponent implements OnChanges {
   @ViewChild('host', { static: true }) host!: ElementRef<HTMLInputElement>;
-  @Input() sites!: Site[];
+  @Input() sites!: Site[] | null;
   @Input() currentSite!: Coords | undefined;
   @Output() markerClick = new EventEmitter<Site>()
   leafletMap!: L.Map;
@@ -74,7 +74,7 @@ export class ReservationMapComponent implements OnChanges {
    * Draw all markers on map
    */
   drawMarkers(): void {
-    this.sites.forEach(site => {
+    this.sites?.forEach(site => {
       const seats = site.availableDates
       L.marker(site.coords, {icon: seats.length ? IconWhite : IconRed})
         .bindTooltip(
@@ -94,10 +94,12 @@ export class ReservationMapComponent implements OnChanges {
    * Fit map to display all markers
    */
   fitBounds(): void {
-    const coords = this.sites.map(m => m.coords);
-    this.leafletMap.fitBounds(coords, {
-      padding: [0, 10],
-    })
+    const coords = this.sites?.map(m => m.coords);
+    if (coords) {
+      this.leafletMap.fitBounds(coords, {
+        padding: [0, 10],
+      })
+    }
   }
 
 }

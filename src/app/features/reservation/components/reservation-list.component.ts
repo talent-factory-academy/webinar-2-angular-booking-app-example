@@ -51,7 +51,7 @@ import { Site } from '../../../model/site';
   `]
 })
 export class ReservationListComponent {
-  @Input() items!: Site[];
+  @Input() items!: Site[] | null;
   @Input() selectedSite!: Site | null;
   @Output() itemClick = new EventEmitter<Site | null>()
 

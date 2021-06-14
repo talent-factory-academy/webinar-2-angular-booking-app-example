@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Site } from '../../../model/site';
 
 @Pipe({
   name: 'search'
 })
 export class SearchPipe implements PipeTransform {
-  transform(items: any[], text = ''): any[] {
+  transform(items: Site[] | null, text = ''): Site[] | null{
     text = text.toLowerCase();
     return items ?
       items.filter((item, index) => {

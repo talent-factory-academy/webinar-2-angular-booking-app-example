@@ -9,7 +9,7 @@ import { ReservationService } from './services/reservation.service';
       <!--left col-->
       <mat-drawer mode="side" opened class="left-panel">
         <fb-reservation-list
-          [items]="reservationService.sites"
+          [items]="reservationService.sites | async"
           [selectedSite]="reservationService.currentItem"
           (itemClick)="reservationService.currentItem = $event"
         ></fb-reservation-list>
@@ -18,8 +18,8 @@ import { ReservationService } from './services/reservation.service';
       <!--right col-->
       <mat-drawer-content>
         <fb-reservation-map
+          [sites]="reservationService.sites | async"
           [currentSite]="reservationService.currentItem?.coords"
-          [sites]="reservationService.sites"
           (markerClick)="reservationService.openReservationModal($event)"
         ></fb-reservation-map>
       </mat-drawer-content>
@@ -32,4 +32,5 @@ import { ReservationService } from './services/reservation.service';
 })
 export class ReservationComponent {
   constructor(public reservationService: ReservationService) {}
+
 }
