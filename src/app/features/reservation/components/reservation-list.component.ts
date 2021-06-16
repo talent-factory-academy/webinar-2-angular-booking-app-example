@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, startWith } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 import { Site } from '../../../model/site';
 
 @Component({
@@ -52,6 +52,7 @@ import { Site } from '../../../model/site';
 export class ReservationListComponent {
   @Input() items: Site[] | null = [];
   @Output() itemClick = new EventEmitter<Site | null>();
+
   input: FormControl = new FormControl();
   search$ = this.input.valueChanges.pipe(debounceTime(1000));
 }

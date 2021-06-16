@@ -53,8 +53,7 @@ export class ReservationModalComponent {
    * Display available dates
    */
   filterByAvailableDates = (d: Date | null): boolean => {
-    const time = d?.getTime();
-    return !!this.availableDates.find(x => x.getTime() === time);
+    return !!this.availableDates.find(x => x.getTime() === d?.getTime());
   }
 
   /**

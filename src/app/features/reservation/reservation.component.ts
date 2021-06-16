@@ -7,7 +7,7 @@ import { ReservationService } from './services/reservation.service';
 
     <mat-drawer-container class="view">
       <!--left col-->
-      <mat-drawer mode="side" opened class="left-panel">
+      <mat-drawer mode="side" opened class="side-panel">
         <fb-reservation-list
           [items]="(reservationService.sites$ | async)"
           (itemClick)="reservationService.setSelectedSiteHandler($event)"
@@ -25,8 +25,15 @@ import { ReservationService } from './services/reservation.service';
     </mat-drawer-container>
   `,
   styles: [`
-    .view { width: 100%;height: 100vh;margin: 0 }
-    .left-panel { min-width: 250px; }
+    .view {
+      width: 100%;
+      height: 100vh;
+      margin: 0
+    }
+
+    .side-panel {
+      min-width: 250px;
+    }
   `]
 })
 export class ReservationComponent implements OnInit {

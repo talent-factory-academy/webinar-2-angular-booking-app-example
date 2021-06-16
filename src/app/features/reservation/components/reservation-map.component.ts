@@ -42,6 +42,25 @@ export class ReservationMapComponent implements OnChanges {
   leafletMap!: L.Map;
 
   /**
+   * When sites are
+   */
+  ngOnChanges( changes: SimpleChanges ): void {
+    // First time ==> init map
+    if (changes.sites && changes.sites.isFirstChange()) {
+      this.initMap();
+    }
+
+    // when currentSite changes
+    if (changes.currentSite.currentValue) {
+      // Pan To current Site
+      this.leafletMap.setView(changes.currentSite.currentValue, 11);
+    } else {
+      // view all markers when no site is selected
+      this.fitBounds()
+    }
+  }
+
+  /**
    * Init Leaflet Map
    */
   initMap(): void {
@@ -51,24 +70,6 @@ export class ReservationMapComponent implements OnChanges {
     this.drawMarkers();
   }
 
-  /**
-   * When property changes
-   */
-  ngOnChanges( changes: SimpleChanges ): void {
-    // First time ==> init map
-    if (changes.sites && changes.sites.isFirstChange()) {
-      this.initMap();
-    }
-
-    // when a new site is selected
-    if (changes.currentSite.currentValue) {
-      // Pan To current Site
-      this.leafletMap.setView(changes.currentSite.currentValue, 11);
-    } else {
-      // view all when no site is selected
-      this.fitBounds()
-    }
-  }
 
   /**
    * Draw all markers on map
@@ -97,7 +98,7 @@ export class ReservationMapComponent implements OnChanges {
     const coords = this.sites?.map(m => m.coords);
     if (coords) {
       this.leafletMap.fitBounds(coords, {
-        padding: [0, 10],
+        padding: [10, 10],
       })
     }
   }
