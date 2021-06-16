@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ReservationService } from './services/reservation.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'fb-reservation',
@@ -8,19 +7,22 @@ import { ReservationService } from './services/reservation.service';
     <mat-drawer-container class="view">
       <!--left col-->
       <mat-drawer mode="side" opened class="side-panel">
-        <fb-reservation-list
-          [items]="(reservationService.sites$ | async)"
-          (itemClick)="reservationService.setSelectedSiteHandler($event)"
-        ></fb-reservation-list>
+        <!--Site List-->
+        <fb-reservation-list></fb-reservation-list>
       </mat-drawer>
 
       <!--right col-->
       <mat-drawer-content>
-        <fb-reservation-map
-          [sites]="reservationService.sites$ | async"
-          [currentSite]="(reservationService.currentSite$ | async)?.coords"
-          (markerClick)="reservationService.openReservationModal($event)"
-        ></fb-reservation-map>
+        <!--Map-->
+        <fb-reservation-map></fb-reservation-map>
+        
+        
+        <!--Modal Example-->
+        <!--
+        <div style="width: 400px">
+          <fb-reservation-modal></fb-reservation-modal>
+        </div>
+        -->
       </mat-drawer-content>
     </mat-drawer-container>
   `,
@@ -36,11 +38,6 @@ import { ReservationService } from './services/reservation.service';
     }
   `]
 })
-export class ReservationComponent implements OnInit {
-  constructor(public reservationService: ReservationService) {}
-
-  ngOnInit() {
-    this.reservationService.getSites();
-  }
+export class ReservationComponent {
 
 }

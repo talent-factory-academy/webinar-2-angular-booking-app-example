@@ -1,19 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
-import { Site } from '../../../model/site';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'fb-reservation-list',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="list-header">
       <h2>Book an appointment <br>with your bank</h2>
       <mat-form-field class="example-form-field">
         <mat-label>Filter by name</mat-label>
-        <input matInput type="text" [formControl]="input">
-        <button matSuffix mat-icon-button aria-label="Clear"
-                (click)="input.setValue('')">
+        <input matInput type="text">
+        <button matSuffix mat-icon-button aria-label="Clear">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
@@ -21,21 +16,22 @@ import { Site } from '../../../model/site';
 
     <div class="list-content">
       <mat-list>
-        <mat-list-item matRipple (click)="itemClick.emit(null)">
+        <mat-list-item matRipple>
           <mat-icon mat-list-icon>map</mat-icon>
           <div mat-line>View all</div>
         </mat-list-item>
 
-        <ng-container *ngFor="let item of items | search: (search$ | async)">
-          <mat-divider></mat-divider>
-          <mat-list-item
-            matRipple
-            (click)="itemClick.emit(item)"
-          >
-            <mat-icon mat-list-icon>place</mat-icon>
-            <div mat-line>{{item.name}}</div>
-          </mat-list-item>
-        </ng-container>
+        <mat-divider></mat-divider>
+        <mat-list-item matRipple>
+          <mat-icon mat-list-icon>place</mat-icon>
+          <div mat-line>Site Name</div>
+        </mat-list-item>
+        
+        <mat-divider></mat-divider>
+        <mat-list-item matRipple>
+          <mat-icon mat-list-icon>place</mat-icon>
+          <div mat-line>Site Name</div>
+        </mat-list-item>
 
       </mat-list>
     </div>
@@ -50,9 +46,5 @@ import { Site } from '../../../model/site';
   `]
 })
 export class ReservationListComponent {
-  @Input() items: Site[] | null = [];
-  @Output() itemClick = new EventEmitter<Site | null>();
 
-  input: FormControl = new FormControl();
-  search$ = this.input.valueChanges.pipe(debounceTime(1000));
 }
