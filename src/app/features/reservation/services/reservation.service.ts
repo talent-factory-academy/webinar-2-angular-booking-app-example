@@ -29,7 +29,7 @@ export class ReservationService {
   setSelectedSiteHandler(site: Site | null) {
     this.currentSite$.next(site);
 
-    if (site) {
+    if (site && site.availableDates.length) {
       this.openReservationModal(site);
     }
   }

@@ -32,7 +32,10 @@ import { Site } from '../../../model/site';
             matRipple
             (click)="itemClick.emit(item)"
           >
-            <mat-icon mat-list-icon>place</mat-icon>
+            <mat-icon 
+              mat-list-icon
+              [style.color]="item.availableDates.length ? null : 'red'"
+            >place</mat-icon>
             <div mat-line>{{item.name}}</div>
           </mat-list-item>
         </ng-container>
