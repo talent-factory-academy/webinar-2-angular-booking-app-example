@@ -5,7 +5,7 @@ import { Site } from '../../../model/site';
   name: 'search'
 })
 export class SearchPipe implements PipeTransform {
-  transform(items: Site[] | null, text = ''): Site[] | null{
+  transform(items: Site[] | null, text: string): Site[] | null {
     if (!text || !items) {
       return items;
     }

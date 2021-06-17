@@ -11,3 +11,4 @@ export interface Seat {
 }
 export type Coords = [number, number];
 export type Time = [string, string];
+
